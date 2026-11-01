@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q DukanSahayak-upload.zip -d proj
-      - uses: actions/setup-java@v4
+      - name: Put Hindi voice model inside the app
+        run: | curl -fL --retry 3 -o hi.zip https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip unzip -q hi.zip mkdir -p proj/app/src/main/assets mv vosk-model-small-hi-0.22 proj/app/src/main/assets/model-hi ls proj/app/src/main/assets/model-hi       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
       - uses: gradle/actions/setup-gradle@v4
         with: { gradle-version: '8.9' }
