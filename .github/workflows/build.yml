@@ -8,6 +8,9 @@ jobs:
       - run: unzip -q DukanSahayak-upload.zip -d proj
       - name: Hindi voice model
         run: "curl -fL --retry 3 -o hi.zip https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip && unzip -q hi.zip && mkdir -p proj/app/src/main/assets && mv vosk-model-small-hi-0.22 proj/app/src/main/assets/model-hi"
+      - name: English voice model (offline)
+        continue-on-error: true
+        run: "curl -fL --retry 3 -o en.zip https://alphacephei.com/vosk/models/vosk-model-small-en-in-0.4.zip && unzip -q en.zip && mv vosk-model-small-en-in-0.4 proj/app/src/main/assets/model-en"
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
       - uses: gradle/actions/setup-gradle@v4
